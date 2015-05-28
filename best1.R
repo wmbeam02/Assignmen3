@@ -1,5 +1,3 @@
-# Now I'm trying to change your code
-
 setwd("~/Desktop/Online Coursera/Coursera-R-Programming/week4/")
 list.files()
 # helper function for getting the hospital name
