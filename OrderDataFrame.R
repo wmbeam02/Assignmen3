@@ -20,14 +20,12 @@ rankhospital=function(state, outcome, num="best") {
   StateSub=data[data$State == state, ]
   # View(StateSub)
   
-##  <order> does not seem to work correctly.  I've been all over StackOverflow and I've tried it without the If/Else loops, I've tried it with double brackets,
-##  I've tried it with decreasing=TRUE and FALSE.  Nothing gets the <StateSub> table to re-order the way I want.
-  if (outcome == "Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack") {
-    RankedData=StateSub[order(StateSub[, "Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack"], StateSub[ "Hospital.Name"], decreasing=TRUE, na.last=NA), ] 
-  } else if (outcome == "Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure"){
-    RankedData=StateSub[order(StateSub[, "Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure"], StateSub[ "Hospital.Name"], decreasing=TRUE, na.last=NA), ]
+if (outcome == "heart attack") {
+    RankedData=StateSub[order((as.numeric(StateSub[, "Hospital.30.Day.Death..Mortality..Rates.from.Heart.Attack"])), StateSub[ "Hospital.Name"], decreasing=FALSE, na.last=NA), ] 
+  } else if (outcome == "heart failure"){
+    RankedData=StateSub[order((as.numeric(StateSub[, "Hospital.30.Day.Death..Mortality..Rates.from.Heart.Failure"])), StateSub[ "Hospital.Name"], decreasing=FALSE, na.last=NA), ]
   } else {
-    RankedData=StateSub[order(StateSub[,"Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia"], StateSub[ "Hospital.Name"], decreasing=TRUE, na.last=NA), ]
+    RankedData=StateSub[order((as.numeric(StateSub[,"Hospital.30.Day.Death..Mortality..Rates.from.Pneumonia"])), StateSub[ "Hospital.Name"], decreasing=FALSE, na.last=NA), ]
   }
   View(RankedData)
    
